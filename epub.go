@@ -3,10 +3,11 @@ package kafcli
 import (
 	"bytes"
 	"fmt"
-	"github.com/bmaupin/go-epub"
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/go-shiori/go-epub"
 )
 
 type EpubConverter struct{}
@@ -32,7 +33,7 @@ func (convert EpubConverter) Build(book Book) error {
 	}()
 
 	// Create a ne EPUB
-	e := epub.NewEpub(book.Bookname)
+	e, err := epub.NewEpub(book.Bookname)
 	e.SetLang(book.Lang)
 	// Set the author
 	e.SetAuthor(book.Author)

@@ -1,16 +1,8 @@
 $env:GOOS="linux"
-go build -ldflags "-s -w" -o kaf-cli-linux main.go
+go build -trimpath -ldflags "-s -w -buildid=" -o kaf-cli-linux cmd/cli.go
 
 $env:GOOS="darwin"
-go build -ldflags "-s -w" -o kaf-cli-darwin main.go
-
-
-$env:GOOS="windows"
-go build -ldflags "-s -w" -o kaf-cli.exe main.go
+go build -trimpath -ldflags "-s -w -buildid=" -o kaf-cli-darwin cmd/cli.go
 
 $env:GOOS="windows"
-$env:GOARCH="386"
-go build -ldflags "-s -w" -o kaf-cli_32.exe main.go
-
-echo "done!"
-Start-Sleep -Seconds 20 main.go
+go build -trimpath -ldflags "-s -w -buildid=" -o kaf-cli.exe cmd/cli.go
